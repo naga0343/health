@@ -9,7 +9,6 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
-  const [activeNav, setActiveNav] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const searchRef = useRef(null);
   const navRef = useRef(null);
@@ -40,14 +39,6 @@ const Header = () => {
       { id: 5, name: 'Weight Loss', category: 'Bariatric Surgery' },
     ]
   };
-
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'services', label: 'Services' },
-    { id: 'doctors', label: 'Doctors' },
-    { id: 'contact', label: 'Contact' }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,8 +94,8 @@ const Header = () => {
     });
 
     searchData.doctors.forEach(doctor => {
-      if (doctor.name.toLowerCase().includes(lowerQuery) || 
-          doctor.specialty.toLowerCase().includes(lowerQuery)) {
+      if (doctor.name.toLowerCase().includes(lowerQuery) ||
+        doctor.specialty.toLowerCase().includes(lowerQuery)) {
         results.push({
           ...doctor,
           type: 'doctor',
@@ -115,8 +106,8 @@ const Header = () => {
     });
 
     searchData.services.forEach(service => {
-      if (service.name.toLowerCase().includes(lowerQuery) || 
-          service.category.toLowerCase().includes(lowerQuery)) {
+      if (service.name.toLowerCase().includes(lowerQuery) ||
+        service.category.toLowerCase().includes(lowerQuery)) {
         results.push({
           ...service,
           type: 'service',
@@ -159,36 +150,10 @@ const Header = () => {
     setShowSearchResults(false);
   };
 
-  const navigateToSection = (sectionId) => {
-    closeMenu();
-    setActiveNav(sectionId);
-    
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const headerHeight = document.querySelector('.header').offsetHeight;
-      const sectionTop = section.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: sectionTop,
-        behavior: 'smooth'
-      });
-    } else {
-      // If section doesn't exist, show modal for now
-      if (sectionId === 'doctors' || sectionId === 'about') {
-        openModal(
-          sectionId === 'doctors' ? 'Our Doctors' : 'About Us',
-          sectionId === 'doctors' 
-            ? 'Meet our team of experienced medical professionals specializing in advanced laser surgery.'
-            : 'Heptacare Health provides advanced laser surgery with fast recovery across multiple cities.'
-        );
-      }
-    }
-  };
-
   const handleDiseaseNavigation = (disease) => {
     closeMenu();
     setShowSearchResults(false);
-    openModal(disease.name, 
+    openModal(disease.name,
       `Advanced Laser Treatment for ${disease.name}\n\n` +
       '• Painless Procedure\n' +
       '• Fast Recovery\n' +
@@ -201,7 +166,7 @@ const Header = () => {
   const handleDoctorNavigation = (doctor) => {
     closeMenu();
     setShowSearchResults(false);
-    openModal(doctor.name, 
+    openModal(doctor.name,
       `${doctor.name}\n` +
       `${doctor.specialty}\n` +
       `Experience: ${doctor.experience}\n\n` +
@@ -216,7 +181,15 @@ const Header = () => {
   const handleServiceNavigation = (service) => {
     closeMenu();
     setShowSearchResults(false);
-    navigateToSection('services');
+    openModal(service.name,
+      `${service.name} - ${service.category}\n\n` +
+      'Advanced Laser Surgery Features:\n' +
+      '• Minimal Pain\n' +
+      '• Quick Recovery\n' +
+      '• Expert Surgeons\n' +
+      '• Available Nationwide\n\n' +
+      'Book your free consultation today.'
+    );
   };
 
   const openModal = (title, content) => {
@@ -266,7 +239,7 @@ const Header = () => {
 
   const handleAppointmentClick = () => {
     closeMenu();
-    openModal('Book Free Appointment', 
+    openModal('Book Free Appointment',
       'Schedule Your Consultation Today!\n\n' +
       '✓ Advanced Laser Surgery\n' +
       '✓ Fast Recovery Process\n' +
@@ -279,7 +252,7 @@ const Header = () => {
   };
 
   const handleEmergencyClick = () => {
-    const phoneNumber = '+1 (555) 123-4567';
+    const phoneNumber = '+91 9353937641';
     if (window.confirm(`Call to Schedule Consultation?\n${phoneNumber}`)) {
       window.location.href = `tel:${phoneNumber}`;
     }
@@ -307,7 +280,7 @@ const Header = () => {
                 onFocus={() => searchQuery && setShowSearchResults(true)}
               />
               {searchQuery && (
-                <button 
+                <button
                   className="clear-search-btn"
                   onClick={handleClearSearch}
                   aria-label="Clear search"
@@ -315,7 +288,7 @@ const Header = () => {
                   ✕
                 </button>
               )}
-              <button 
+              <button
                 className="search-btn"
                 onClick={handleSearch}
                 disabled={isSearching}
@@ -351,13 +324,13 @@ const Header = () => {
 
           {/* Action Buttons */}
           <div className="action-section">
-            <button 
+            <button
               className="emergency-btn"
               onClick={handleEmergencyClick}
             >
               🆘 Call to Schedule
             </button>
-            <button 
+            <button
               className="appointment-btn"
               onClick={handleAppointmentClick}
             >
@@ -366,7 +339,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="mobile-menu-btn"
             onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -375,24 +348,6 @@ const Header = () => {
             <span className="menu-icon">{isMenuOpen ? '✕' : '☰'}</span>
           </button>
         </div>
-
-        {/* Navigation Menu - Below main header */}
-        <nav className="navbar">
-          <ul className="nav-links">
-            {navItems.map((item) => (
-              <li key={item.id} className={`nav-item ${activeNav === item.id ? 'active' : ''}`}>
-                <button 
-                  className="nav-link-btn"
-                  onClick={() => navigateToSection(item.id)}
-                  aria-label={`Navigate to ${item.label}`}
-                >
-                  {item.label}
-                  {activeNav === item.id && <span className="active-indicator"></span>}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
 
       {/* Mobile Navigation Overlay */}
@@ -402,7 +357,7 @@ const Header = () => {
             <div className="mobile-logo">
               <HeaderLogo />
             </div>
-            <button 
+            <button
               className="mobile-close-btn"
               onClick={closeMenu}
               aria-label="Close menu"
@@ -422,7 +377,7 @@ const Header = () => {
                 onChange={handleSearchChange}
                 onKeyPress={handleSearchKeyPress}
               />
-              <button 
+              <button
                 className="search-btn"
                 onClick={handleSearch}
                 disabled={isSearching}
@@ -432,22 +387,6 @@ const Header = () => {
               </button>
             </div>
           </div>
-
-          {/* Mobile Navigation Links */}
-          <nav className="mobile-nav">
-            <ul className="mobile-nav-links">
-              {navItems.map((item) => (
-                <li key={item.id} className={`mobile-nav-item ${activeNav === item.id ? 'active' : ''}`}>
-                  <button 
-                    className="mobile-nav-link"
-                    onClick={() => navigateToSection(item.id)}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
 
           {/* Mobile Stats from Image */}
           <div className="mobile-stats">
@@ -471,13 +410,13 @@ const Header = () => {
 
           {/* Mobile Action Buttons */}
           <div className="mobile-action-buttons">
-            <button 
+            <button
               className="mobile-appointment-btn"
               onClick={handleAppointmentClick}
             >
               📅 Book Free Appointment
             </button>
-            <button 
+            <button
               className="mobile-emergency-btn"
               onClick={handleEmergencyClick}
             >

@@ -87,13 +87,13 @@ const Surgeries = () => {
       <div className="container">
         {/* Surgeries Section */}
         <div className="surgeries-section">
-          <h2 className="section-title">HeptaCare Health Surgeries</h2>
+          <h2 className="section-title"> Surgeries</h2>
           <p className="section-subtitle">Advanced surgical treatments with minimal invasion and faster recovery</p>
-          
+
           <div className="surgeries-grid">
             {visibleSurgeries.map((surgery) => (
-              <div 
-                key={surgery.id} 
+              <div
+                key={surgery.id}
                 className="surgery-card"
                 onClick={() => handleSurgeryClick(surgery)}
               >
@@ -103,7 +103,7 @@ const Surgeries = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="view-more-container">
             <button className="view-more-btn" onClick={handleViewMore}>
               {showAllSurgeries ? 'View Less' : 'View More'} →
@@ -113,20 +113,20 @@ const Surgeries = () => {
 
         {/* Specialities Section */}
         <div className="specialities-section">
-          <h2 className="section-title">Our HeptaCare Specialities</h2>
+          <h2 className="section-title">Our CURE CARE SURGERY Specialities</h2>
           <p className="section-subtitle">Comprehensive medical care across various specializations</p>
-          
+
           <div className="specialities-grid">
             {specialities.map((speciality) => (
-              <div 
-                key={speciality.id} 
+              <div
+                key={speciality.id}
                 className="speciality-card"
                 style={{ '--speciality-color': speciality.color }}
                 onClick={() => handleSpecialityClick(speciality)}
               >
                 <div className="speciality-header">
-                  <div 
-                    className="speciality-icon" 
+                  <div
+                    className="speciality-icon"
                     style={{ backgroundColor: speciality.color }}
                   >
                     {speciality.icon}

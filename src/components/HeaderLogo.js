@@ -10,14 +10,14 @@ const HeaderLogo = () => {
       <div className="header-logo-image">
         <img 
           src={Logo} 
-          alt="Heptacare Health Logo" 
+          alt="CURE CARE SURGERY Logo" 
           className="clinic-logo"
         />
       </div>
       
       {/* Clinic Name with proper alignment */}
       <div className="clinic-name-container">
-        <div className="clinic-name-main">Heptacare Health</div>
+        <div className="clinic-name-main">CURE CARE SURGERY</div>
         <div className="clinic-tagline">Advanced Laser Surgery & Fast Recovery</div>
       </div>
     </div>

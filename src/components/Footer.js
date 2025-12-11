@@ -117,7 +117,7 @@ const Footer = () => {
 
   const quickLinks = [
     { label: 'Home', action: scrollToTop },
-    { label: 'About Us', action: () => openModal('About Us', 'Heptacare Health is a leading medical facility dedicated to providing comprehensive healthcare services with state-of-the-art technology and compassionate care.') },
+    { label: 'About Us', action: () => openModal('About Us', 'CURE CARE SURGERY is a leading medical facility dedicated to providing comprehensive healthcare services with state-of-the-art technology and compassionate care.') },
     { label: 'Services', action: () => scrollToSection('services-section') },
     { label: 'Doctors', action: openDoctorsPage },
     { label: 'Contact', action: () => scrollToSection('contact-section') }
@@ -134,25 +134,25 @@ const Footer = () => {
   const contactInfo = [
     { 
       icon: '📍', 
-      text: '123 Medical Street, Health City, HC 10001',
+      text: 'No.87 Venkateswara Complex Muddinapalya Main Road, 1st stage BEL Layout Anjana Nagar, Bengaluru Karnataka 560091',
       action: () => {
         window.open('https://maps.google.com/?q=123+Medical+Street,+Health+City,+HC+10001', '_blank');
       }
     },
     { 
       icon: '📞', 
-      text: '+1 (555) 123-4567',
+      text: '+91 9353937641',
       action: () => {
-        if (window.confirm('Call +1 (555) 123-4567?')) {
-          window.location.href = 'tel:+15551234567';
+        if (window.confirm('Call +91 9353937641')) {
+          window.location.href = 'tel:+91 9353937641';
         }
       }
     },
     { 
       icon: '✉️', 
-      text: 'info@heptacarehealth.com',
+      text: 'curecaresurgery@gmail.com',
       action: () => {
-        window.location.href = 'mailto:info@heptacarehealth.com?subject=Inquiry%20from%20Website&body=Hello%20Heptacare%20Health,';
+        window.location.href = 'mailto:curecaresurgery@gmail.com?subject=Inquiry%20from%20Website&body=Hello%20Heptacare%20Health,';
       }
     }
   ];
@@ -250,7 +250,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <h3>Heptacare Health</h3>
+              <h3>CURE CARE SURGERY</h3>
               <p className="footer-tagline">Healing Hands, Caring Hearts</p>
             </div>
             <p className="footer-description">
@@ -369,7 +369,7 @@ const Footer = () => {
         
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; {currentYear} Heptacare Health. All rights reserved.
+            &copy; {currentYear} CURE CARE SURGERY. All rights reserved.
           </p>
           <div className="footer-bottom-links">
             {footerLinks.map((link, index) => (
